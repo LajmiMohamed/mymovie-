@@ -26,9 +26,14 @@ function Moviecontainer() {
   ])
  
   const add =()=>{
-    setmovieliste(movieliste.concat({id:uuidv4(),title:movie.title,description:movie.description,image:movie.image})) 
+    setmovieliste(movieliste.concat({id:uuidv4(),title:movie.title,description:movie.description})) 
     setaddmovie(false)
  }
+ const handleChange=(e)=> {
+  setaddmovie(movieliste.concat({
+    image: URL.createObjectURL(e.target.files[0])
+  }))
+}
   return (
     <div className="App">
       <header className="App-header">
@@ -41,8 +46,7 @@ function Moviecontainer() {
           <Form.File
             id="custom-file-translate-scss"
             lang="en" 
-            onChange={(e) => 
-              setmovie({...movie, image:e.target.files })}
+            onChange={handleChange}
              />
          
           <br />
